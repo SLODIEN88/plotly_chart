@@ -60,9 +60,9 @@ function buildCharts(sample) {
     // 3. Create a variable that holds the samples array. 
     var samplesArray = data.samples;
     // 4. Create a variable that filters the samples for the object with the desired sample number.
-    var filtersamplesArray = samplesArray.filter(sampleObj => sampleObj.id == sample);
+    var filterSamplesArray = samplesArray.filter(sampleObj => sampleObj.id == sample);
     //  5. Create a variable that holds the first sample in the array.
-    var result = filtersamplesArray[0];
+    var result = filterSamplesArray[0];
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids = result.otu_ids;
@@ -96,7 +96,8 @@ function buildCharts(sample) {
         }
     };
     // 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot("bar", barData, barLayout)
+    Plotly.newPlot("bar", barData, barLayout);
+
 // Bubble and Gauge Charts
     // 1. Create the trace for the bubble chart.
     var trace = [{
@@ -113,7 +114,7 @@ function buildCharts(sample) {
 
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
-        title: "Bacteria Species per Sample",
+        title: "Bacteria Cultures per Sample",
         xaxis: {title:"OTU ID"},
         margin: {
             l: 75,
@@ -125,7 +126,7 @@ function buildCharts(sample) {
     };
 
     // 3. Use Plotly to plot the data with the layout.
-    Plotly.newPlot("bubble, trace, bubbleLayout"); 
+    Plotly.newPlot("bubble", trace, bubbleLayout); 
   
 
       // 1. Create a variable that filters the metadata array for the object with the desired sample number.
@@ -135,7 +136,7 @@ function buildCharts(sample) {
         var result = resultArray[0];
   
       // 3. Create a variable that holds the washing frequency.
-        var wfreq_value = result.wfreq
+        var wfreq_value = result
       
       // 4. Create the trace for the gauge chart.
         var gaugeData = [{
@@ -145,7 +146,7 @@ function buildCharts(sample) {
             type: "indicator",
             mode: "gauge+number",
             gauge: {
-             axis: {range: [null,10]},
+             axis: {range: [0,10]},
              bar: {color: "black"},
              steps: [
                 {range: [0, 2], color: "red"},
